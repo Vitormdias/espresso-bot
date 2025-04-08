@@ -37,7 +37,7 @@ Com base nos dados abaixo, gere uma nova receita de café coado que valorize as 
 O café que estou usando foi teve o processo {current_data['brew']['process']}, 
 o nível de torra é {current_data['brew']['roast_profile']} e o método de preparo que quero usar é {current_data['brew']['method']}
 
-Eu quero café {current_data['brew']['amount']} de café
+Eu quero tomar aproximadamente {current_data['brew']['amount']} de café
 
 Na minha receita anterior eu senti {current_data['brew']['feedback']}
 
@@ -47,6 +47,8 @@ Temperatura da água (°C)
 Quantidade de despejos
 Tempo de infusão (caso o método permita)
 Moagem 
+
+Sintetize sua resposta em uma receita de café coado
 
 Language: {language}
 """
