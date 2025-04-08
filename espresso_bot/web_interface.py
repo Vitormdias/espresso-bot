@@ -6,16 +6,21 @@ from espresso_bot.prompt_generator import generate_espresso_prompt, generate_bre
 import os
 import json
 
-def load_translations(language):
-    with open(f"espresso_bot/translations/{language}.json", "r") as f:
-        return json.load(f)
-
-def web_interface(language="pt-BR", summary=True):
+def web_interface(summary=True):
     # Local database path
     DB_PATH = "espressos.json"
 
-    # Load translations
-    translations = load_translations(language)
+    # Arrays for dropdown options
+    process_options = ["Lavado", "Natural", "Honey", "Fermentado"]
+    roast_profile_options = ["Clara", "Média", "Escura"]
+    desired_sensory_options = [
+        "Acidez suave e dulçor frutado",
+        "Doce e encorpado",
+        "Acidez clara e floral"
+    ]
+    brew_method_options = ["V-60", "Koar", "Clever", "Kalita", "Melitta", "Aeropress"]
+    brew_amount_options = ["200ml", "300ml", "500ml"]
+    brew_process_options = ["Natural", "Lavado", "Honey", "Fermentado"]
 
     # State to toggle between espresso and coado sections
     if "show_coado" not in st.session_state:
@@ -24,18 +29,18 @@ def web_interface(language="pt-BR", summary=True):
     # Toggle sections based on state
     if not st.session_state.show_coado:
         # Espresso Section
-        st.title(translations["title"])
-        process = st.selectbox(translations["process"], translations["process_options"], index=1)
-        roast = st.selectbox(translations["roast_profile"], translations["roast_profile_options"], index=0)
-        taste_notes = st.text_input(translations["taste_notes"])
-        desired_sensory = st.selectbox(translations["desired_sensory"], translations["desired_sensory_options"])
-        dose = st.number_input(translations["dose"], step=0.1, value=16.0)
-        yield_ = st.number_input(translations["yield"], step=0.1, value=32.0)
-        grind = st.text_input(translations["grind"], value="25")
-        pre_infusion = st.number_input(translations["pre_infusion"], step=1, value=3)
-        feedback = st.text_input(translations["feedback"])
+        st.title("Bora regular um espresso!")
+        process = st.selectbox("Processo", process_options, index=1)
+        roast = st.selectbox("Perfil de Torra", roast_profile_options, index=0)
+        taste_notes = st.text_input("Notas sensoriais")
+        desired_sensory = st.selectbox("Perfil Sensorial Desejado", desired_sensory_options)
+        dose = st.number_input("Dose (g)", step=0.1, value=16.0)
+        yield_ = st.number_input("Rendimento (g)", step=0.1, value=32.0)
+        grind = st.text_input("Moagem (K-Max)", value="25")
+        pre_infusion = st.number_input("Tempo de pré-infusão (s)", step=1, value=3)
+        feedback = st.text_input("Feedback")
 
-        if st.button(translations["create_recipe"]):
+        if st.button("Criar receita"):
             data = {
                 "timestamp": datetime.now().isoformat(),
                 "coffee": {
@@ -56,23 +61,23 @@ def web_interface(language="pt-BR", summary=True):
             history = load_history(DB_PATH)
             prompt = generate_espresso_prompt(history, data, summary=summary)
             response = get_response(prompt, summary=summary)
-            st.subheader(translations["ai_suggested_recipe"])
+            st.subheader("Tente começar com essa receita:")
             st.markdown(response)
 
         # Button to switch to coado section
-        if st.button(translations["brew_more_button"]):
+        if st.button("Que tal regular um coado agora?"):
             st.session_state.show_coado = True
-            # st.experimental_rerun()
+            st.experimental_rerun()
 
     else:
         # Coado Section
         st.subheader("Bora fazer um café coado!")
-        brew_process = st.selectbox(translations["brew_process"], translations["brew_process_options"])
-        brew_taste_notes = st.text_input(translations["brew_taste_notes"])
-        brew_roast_profile = st.selectbox(translations["brew_roast_profile"], translations["brew_roast_profile_options"])
-        brew_method = st.selectbox(translations["brew_method"], translations["brew_method_options"])
-        brew_amount = st.selectbox(translations["brew_amount"], translations["brew_amount_options"])
-        brew_feedback = st.text_area(translations["brew_feedback"])
+        brew_process = st.selectbox("Processo", brew_process_options)
+        brew_taste_notes = st.text_input("Notas sensoriais")
+        brew_roast_profile = st.selectbox("Perfil de Torra", roast_profile_options)
+        brew_method = st.selectbox("Método de Preparo", brew_method_options)
+        brew_amount = st.selectbox("Quanto de café quer fazer?", brew_amount_options)
+        brew_feedback = st.text_area("Feedback do preparo")
 
         if st.button("Gerar receita"):
             brew_data = {
@@ -90,10 +95,10 @@ def web_interface(language="pt-BR", summary=True):
             history = load_history(DB_PATH)
             prompt = generate_brewers_prompt(history, brew_data, summary=summary)
             response = get_response(prompt, summary=summary)
-            st.subheader(translations["ai_suggested_recipe"])
+            st.subheader("Tente começar com essa receita:")
             st.markdown(response)
 
         # Button to go back to espresso section
         if st.button("Quero tomar um espresso mesmo"):
             st.session_state.show_coado = False
-            # st.experimental_rerun()
+            st.experimental_rerun()
