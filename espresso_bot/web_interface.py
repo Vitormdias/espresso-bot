@@ -3,8 +3,6 @@ from datetime import datetime
 from espresso_bot.ai_client import get_response
 from espresso_bot.data_handler import load_history, save_entry
 from espresso_bot.prompt_generator import generate_espresso_prompt, generate_brewers_prompt
-import os
-import json
 
 def web_interface(summary=True):
     # Local database path
@@ -22,50 +20,9 @@ def web_interface(summary=True):
     brew_amount_options = ["200ml", "300ml", "500ml"]
     brew_process_options = ["Natural", "Lavado", "Honey", "Fermentado"]
 
-    # Custom CSS for styling
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: #4b3832; /* Dark brown background */
-        }
-        .stApp {
-            background-color: #4b3832; /* Dark brown background */
-        }
-        .block-container {
-            padding: 2rem;
-            border-radius: 10px;
-            background-color: #d7ccc8; /* Light gray section */
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        h1, h2, h3, h4, h5, h6, p, label {
-            color: #f5f5f5; /* Off-white text */
-        }
-        .stButton>button {
-            background-color: #6b4226; /* Coffee brown button */
-            color: #f5f5f5; /* Off-white text */
-            border-radius: 5px;
-            padding: 0.5rem 1rem;
-        }
-        .stButton>button:hover {
-            background-color: #8c5a3c; /* Lighter coffee brown on hover */
-        }
-        .stTextInput>div>div>input {
-            background-color: #f5f5f5; /* Light input background */
-            color: #4b3832; /* Dark text for inputs */
-        }
-        .stNumberInput>div>div>input {
-            background-color: #f5f5f5; /* Light input background */
-            color: #4b3832; /* Dark text for inputs */
-        }
-        .stSelectbox>div>div>div {
-            background-color: #f5f5f5; /* Light input background */
-            color: #4b3832; /* Dark text for inputs */
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    # Import external CSS
+    with open("espresso_bot/style.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
     # State to toggle between espresso and coado sections
     if "show_coado" not in st.session_state:
