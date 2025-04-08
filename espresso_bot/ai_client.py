@@ -2,7 +2,7 @@ import openai
 import os
 
 def get_client():
-    return openai.OpenAI(
+    return openai.OpenAIClient(
         api_key=os.getenv("OPENAI_API_KEY")
     )
 
