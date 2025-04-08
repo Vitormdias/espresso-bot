@@ -26,19 +26,17 @@ p, label {
 }
 
 button {
-    color: #f5f5f5 !important; /* Off-white text for buttons */
+    color: #f5f5f5 !important;
 }
 
 .stButton>button {
     background-color: #6b4226; /* Coffee brown button */
-    color: #f5f5f5 !important; /* Off-white text */
+    color: #f5f5f5; /* Off-white text */
     border-radius: 5px;
     padding: 0.5rem 1rem;
-    border: none; /* Remove border for cleaner look */
 }
 .stButton>button:hover {
     background-color: #8c5a3c; /* Lighter coffee brown on hover */
-    color: #f5f5f5 !important; /* Ensure text remains off-white on hover */
 }
 .stTextInput>div>div>input {
     background-color: #6b4226; /* Coffee brown input background */
