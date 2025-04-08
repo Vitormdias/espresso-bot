@@ -15,7 +15,7 @@ Yield (g)
 Extraction time (s)
 Grind (K-Max)
 Pre-infusion time (s)
-Summarized Rationale
+Rationale
 Language: {language}
 """
     return prompt
