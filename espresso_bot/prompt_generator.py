@@ -8,7 +8,7 @@ def format_history(history):
     ])
     return history_text
 
-def generate_prompt(history, current_data):
+def generate_prompt(history, current_data, language="en", summary=False):
     history_text = format_history(history)
     prompt = f"""
 You are an espresso expert. Based on the data below, generate a new espresso recipe that matches the desired sensory profile.
@@ -26,5 +26,7 @@ Extraction time (s)
 Grind (K-Max)
 Pre-infusion time (s)
 Expected sensory (acidity, sweetness, bitterness)
+Language: {language}
+Summary: {summary}
 """
     return prompt

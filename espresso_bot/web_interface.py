@@ -10,12 +10,11 @@ def load_translations(language):
     with open(f"espresso_bot/translations/{language}.json", "r") as f:
         return json.load(f)
 
-def web_interface():
+def web_interface(language="pt-BR", summary=True):
     # Local database path
     DB_PATH = "espressos.json"
 
     # Load translations
-    language = "pt-BR"
     translations = load_translations(language)
 
     # Web Interface
@@ -62,8 +61,8 @@ def web_interface():
         }
         save_entry(data, DB_PATH)
         history = load_history(DB_PATH)
-        prompt = generate_prompt(history, data)
-        response = get_response(prompt)
+        prompt = generate_prompt(history, data, language=language, summary=summary)
+        response = get_response(prompt, language=language, summary=summary)
         st.subheader(translations["ai_suggested_recipe"])
         st.markdown(response)
 
@@ -105,7 +104,7 @@ def web_interface():
         }
         save_entry(actual_data, DB_PATH)
         history = load_history(DB_PATH)
-        prompt = generate_prompt(history, actual_data)
-        response = get_response(prompt)
+        prompt = generate_prompt(history, actual_data, language=language, summary=summary)
+        response = get_response(prompt, language=language, summary=summary)
         st.subheader(translations["ai_suggested_adjustments"])
         st.markdown(response)

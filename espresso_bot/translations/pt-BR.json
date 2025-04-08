@@ -31,5 +31,7 @@
     "Falta clareza"
   ],
   "send_actual_result": "Receita ajustada",
-  "ai_suggested_adjustments": "Vamos tentar essa receita"
+  "ai_suggested_adjustments": "Vamos tentar essa receita",
+  "language": "Idioma",
+  "summary": "Resumo"
 }
