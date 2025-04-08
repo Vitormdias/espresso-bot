@@ -22,27 +22,32 @@ def web_interface(language="pt-BR", summary=True):
     # st.header(translations["input_section_header"])
     process = st.selectbox(translations["process"], translations["process_options"], index=1)
     roast = st.selectbox(translations["roast_profile"], translations["roast_profile_options"], index=0)
+    taste_notes = st.text_input(translations["taste_notes"])
+
+    desired_sensory = st.selectbox(translations["desired_sensory"], translations["desired_sensory_options"])
+
     dose = st.number_input(translations["dose"], step=0.1, value=16.0)
     yield_ = st.number_input(translations["yield"], step=0.1, value=32.0)
     grind = st.text_input(translations["grind"], value="25")
     pre_infusion = st.number_input(translations["pre_infusion"], step=1, value=3)
-    desired_sensory = st.selectbox(translations["desired_sensory"], translations["desired_sensory_options"])
+    
+    feedback = st.text_input(translations["feedback"])
 
     if st.button(translations["create_recipe"]):
         data = {
             "timestamp": datetime.now().isoformat(),
             "coffee": {
                 "process": process,
-                "roast": roast
+                "roast": roast,
+                "taste_notes": taste_notes
             },
             "parameters": {
                 "dose": dose,
                 "yield": yield_,
                 "grind": grind,
-                "pre_infusion": pre_infusion
-            },
-            "desired_result": {
-                "sensory": desired_sensory
+                "pre_infusion": pre_infusion,
+                "desired_sensory": desired_sensory,
+                "feedback": feedback
             }
         }
         save_entry(data, DB_PATH)

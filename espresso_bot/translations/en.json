@@ -2,6 +2,8 @@
   "title": "Let's dial some Espresso!",
   "input_section_header": "Tell me about your coffee and variables",
   "process": "Process",
+  "taste_notes": "Taste notes",
+  "feedback": "Feedback",
   "process_options": ["Washed", "Natural", "Honey", "Fermented"],
   "roast_profile": "Roast Profile",
   "roast_profile_options": ["Light", "Medium", "Dark"],

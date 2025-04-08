@@ -2,6 +2,8 @@
   "title": "Bora regular um espresso!",
   "input_section_header": "Qual café você está usando? Qual sua regulagem atual?",
   "process": "Processo",
+  "taste_notes": "Notas sensoriais",
+  "feedback": "Feedback",
   "process_options": ["Lavado", "Natural", "Mel", "Fermentado"],
   "roast_profile": "Perfil de Torra",
   "roast_profile_options": ["Clara", "Média", "Escura"],
