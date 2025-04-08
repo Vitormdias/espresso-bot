@@ -39,7 +39,7 @@ def web_interface(summary=True):
         desired_sensory = st.selectbox("Perfil Sensorial Desejado", desired_sensory_options)
         dose = st.number_input("Dose (g)", step=0.1, value=16.0)
         yield_ = st.number_input("Rendimento (g)", step=0.1, value=32.0)
-        grind = st.number_input("Moagem (K-Max)", step=1, value="25")
+        grind = st.number_input("Moagem (K-Max)", step=1, value=25)
         pre_infusion = st.number_input("Tempo de pré-infusão (s)", step=1, value=3)
         feedback = st.text_input("Feedback")
 
