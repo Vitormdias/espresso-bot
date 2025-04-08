@@ -1,8 +1,8 @@
 import streamlit as st
 from datetime import datetime
-from espresso_bot.ai_client import obter_resposta
-from espresso_bot.data_handler import carregar_historico, salvar_entrada
-from espresso_bot.prompt_generator import gerar_prompt
+from espresso_bot.ai_client import get_response
+from espresso_bot.data_handler import load_history, save_entry
+from espresso_bot.prompt_generator import generate_prompt
 import os
 
 def web_interface():
@@ -62,9 +62,9 @@ def web_interface():
                 }
             }
         }
-        salvar_entrada(data, DB_PATH)
-        history = carregar_historico(DB_PATH)
-        prompt = gerar_prompt(history, data)
-        response = obter_resposta(prompt)
+        save_entry(data, DB_PATH)
+        history = load_history(DB_PATH)
+        prompt = generate_prompt(history, data)
+        response = get_response(prompt)
         st.subheader("AI Suggested Recipe:")
         st.markdown(response)
