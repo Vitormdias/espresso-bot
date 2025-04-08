@@ -57,7 +57,7 @@ Sensorial esperado (acidez, dulçor, amargor)
 def obter_resposta(prompt):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
-        store=True
+        store=True,
         messages=[{"role": "user", "content": prompt}]
     )
     return response['choices'][0]['message']['content']
