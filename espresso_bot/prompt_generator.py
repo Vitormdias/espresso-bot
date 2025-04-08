@@ -8,7 +8,8 @@ o nível de torra é {current_data['coffee']['roast']} e as notas de sabor são 
 Eu estou usando uma Gaggia Classi Evo e um moedor 1Zpresso K-Max
 Eu quero tomar aproximadamente {current_data['parameters']['yield']} de café
 Na minha receita anterior eu senti {current_data['parameters']['feedback']}
-Quero que você sugira ajustes considerando que eu controlo:
+
+Quero que você sugira uma receita ajustes considerando que eu controlo:
 Dose (g)
 Rendimento (g)
 Tempo de extração (s)
@@ -18,6 +19,8 @@ Mude 1 parâmetro por vez e com base no feedback ajuste
 A moagem do meu moedor é no clique número {current_data['parameters']['grind']}
 Eu estou fazendo uma pré-infusão de {current_data['parameters']['pre_infusion']} segundos
 Eu quero um café que seja {current_data['parameters']['desired_sensory']}
+
+Por favor sintetize sua resposta em uma receita de espresso
 """
     return prompt
 
