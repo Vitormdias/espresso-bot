@@ -20,10 +20,6 @@ def web_interface(summary=True):
     brew_amount_options = ["200ml", "300ml", "500ml"]
     brew_process_options = ["Natural", "Lavado", "Honey", "Fermentado"]
 
-    # Import external CSS
-    with open("espresso_bot/style.css") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
     # State to toggle between espresso and coado sections
     if "show_coado" not in st.session_state:
         st.session_state.show_coado = False
