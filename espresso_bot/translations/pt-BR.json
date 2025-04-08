@@ -4,7 +4,7 @@
   "process": "Processo",
   "taste_notes": "Notas sensoriais",
   "feedback": "Feedback",
-  "process_options": ["Lavado", "Natural", "Mel", "Fermentado"],
+  "process_options": ["Lavado", "Natural", "Honey", "Fermentado"],
   "roast_profile": "Perfil de Torra",
   "roast_profile_options": ["Clara", "Média", "Escura"],
   "dose": "Dose (g)",
@@ -35,5 +35,17 @@
   "send_actual_result": "Receita ajustada",
   "ai_suggested_adjustments": "Vamos tentar essa receita",
   "language": "Idioma",
-  "summary": "Resumo"
+  "summary": "Resumo",
+
+  "brew_more_button": "Que tal regular um coado agora?",
+  "brew_method": "Método de Preparo",
+  "brew_method_options": ["V-60", "Koar", "Clever", "Kalita", "Melitta", "Aeropress"],
+  "brew_amount": "Quanto de café quer fazer?",
+  "brew_amount_options": ["200ml", "300ml", "500ml"],
+  "brew_feedback": "Feedback do preparo",
+  "brew_process": "Processo",
+  "brew_process_options": ["Natural", "Lavado", "Honey", "Fermentado"],
+  "brew_taste_notes": "Notas sensoriais",
+  "brew_roast_profile": "Perfil de Torra",
+  "brew_roast_profile_options": ["Clara", "Média", "Escura"]
 }

@@ -1,4 +1,4 @@
-def generate_prompt(history, current_data, language="en", summary=False):
+def generate_espresso_prompt(history, current_data, language="en", summary=False):
     prompt = f"""
 You are an espresso expert that will base your responses on James Hoffman, Lance Hedrick and Não Sou Barista
 
@@ -28,3 +28,27 @@ Change 1 parameter at a time and based on feedback adjust
 Language: {language}
 """
     return prompt
+
+def generate_brewers_prompt(history, current_data, language="en", summary=False):
+    prompt = f"""
+Você é um especialista em café que se baseará nas respostas de James Hoffman, Lance Hedrick e Não Sou Barista
+Com base nos dados abaixo, gere uma nova receita de café coado que valorize as notas sensoriais de {current_data['brew']['taste_notes']}
+
+O café que estou usando foi teve o processo {current_data['brew']['process']}, 
+o nível de torra é {current_data['brew']['roast_profile']} e o método de preparo que quero usar é {current_data['brew']['method']}
+
+Eu quero café {current_data['brew']['amount']} de café
+
+Na minha receita anterior eu senti {current_data['brew']['feedback']}
+
+Quero que você sugira ajustes considerando que eu controlo:
+Dose (g)
+Temperatura da água (°C)
+Quantidade de despejos
+Tempo de infusão (caso o método permita)
+Moagem 
+
+Language: {language}
+"""
+    return prompt
+
