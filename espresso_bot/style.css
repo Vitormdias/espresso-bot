@@ -22,11 +22,11 @@ input {
 }
 
 label, div, p {
-    color: #6b4226; /* Coffee brown text */
+    color: #6b4226 !important; /* Coffee brown text */
 }
 
 p, label {
-    color: #6b4226; /* Coffee brown text */
+    color: #6b4226 !important; /* Coffee brown text */
 }
 
 button, p {
