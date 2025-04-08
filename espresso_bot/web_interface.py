@@ -19,7 +19,7 @@ def web_interface(language="pt-BR", summary=True):
 
     # Web Interface
     st.title(translations["title"])
-    st.header(translations["input_section_header"])
+    # st.header(translations["input_section_header"])
     process = st.selectbox(translations["process"], translations["process_options"], index=1)
     roast = st.selectbox(translations["roast_profile"], translations["roast_profile_options"], index=0)
     dose = st.number_input(translations["dose"], step=0.1, value=16.0)
