@@ -1,12 +1,15 @@
 import streamlit as st
 import json
 from datetime import datetime
-import openai
-# Substitua com sua chave da OpenAI
-import os
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from openai import OpenAI
+
+client = OpenAI(
+  api_key=os.getenv("OPENAI_API_KEY")
+)
+
 # Caminho do banco de dados local
 DB_PATH = "espressos.json"
+
 # Carrega o histórico
 def carregar_historico():
     try:
@@ -14,12 +17,14 @@ def carregar_historico():
             return json.load(f)
     except FileNotFoundError:
         return []
+
 # Salva nova entrada
 def salvar_entrada(data):
     historico = carregar_historico()
     historico.append(data)
     with open(DB_PATH, "w") as f:
         json.dump(historico, f, indent=2)
+
 # Gera o prompt com base no histórico
 def gerar_prompt(historico, dados_atuais):
     ultimos = historico[-3:] if len(historico) >= 3 else historico
@@ -50,12 +55,13 @@ Sensorial esperado (acidez, dulçor, amargor)
     return prompt
 # Envia para o modelo
 def obter_resposta(prompt):
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.7
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        store=True
+        messages=[{"role": "user", "content": prompt}]
     )
     return response['choices'][0]['message']['content']
+
 # Interface Web
 st.title("Espresso Bot com IA")
 st.header("1. Informações do Café")
@@ -78,6 +84,7 @@ yield_real = st.number_input("Yield real (g)", step=0.1)
 acidez_r = st.slider("Acidez real", 1, 3, 2)
 dulcor_r = st.slider("Dulçor real", 1, 3, 2)
 amargor_r = st.slider("Amargor real", 1, 3, 2)
+
 if st.button("Gerar Receita com IA"):
     dados = {
         "timestamp": datetime.now().isoformat(),
