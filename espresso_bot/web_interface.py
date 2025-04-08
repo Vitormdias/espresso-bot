@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime
 from espresso_bot.ai_client import get_response
 from espresso_bot.data_handler import load_history, save_entry
-from espresso_bot.prompt_generator import generate_espresso_prompt
+from espresso_bot.prompt_generator import generate_espresso_prompt, generate_brewers_prompt
 import os
 import json
 
@@ -66,7 +66,7 @@ def web_interface(language="pt-BR", summary=True):
 
     else:
         # Coado Section
-        st.subheader("Regular um coado")
+        st.subheader("Bora fazer um café coado!")
         brew_process = st.selectbox(translations["brew_process"], translations["brew_process_options"])
         brew_taste_notes = st.text_input(translations["brew_taste_notes"])
         brew_roast_profile = st.selectbox(translations["brew_roast_profile"], translations["brew_roast_profile_options"])
@@ -74,7 +74,7 @@ def web_interface(language="pt-BR", summary=True):
         brew_amount = st.selectbox(translations["brew_amount"], translations["brew_amount_options"])
         brew_feedback = st.text_area(translations["brew_feedback"])
 
-        if st.button("Enviar ajustes do coado"):
+        if st.button("Gerar receita"):
             brew_data = {
                 "timestamp": datetime.now().isoformat(),
                 "brew": {
@@ -86,13 +86,12 @@ def web_interface(language="pt-BR", summary=True):
                     "feedback": brew_feedback
                 }
             }
-            st.success("Ajustes do coado enviados com sucesso!")
             prompt = generate_brewers_prompt(history, data, language=language, summary=summary)
             response = get_response(prompt, language=language, summary=summary)
             st.subheader(translations["ai_suggested_recipe"])
             st.markdown(response)
 
         # Button to go back to espresso section
-        if st.button("Voltar para espressos"):
+        if st.button("Quero tomar um espresso mesmo"):
             st.session_state.show_coado = False
-            st.experimental_rerun()
+            # st.experimental_rerun()
