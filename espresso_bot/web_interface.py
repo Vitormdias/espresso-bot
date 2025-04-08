@@ -46,46 +46,7 @@ def web_interface(language="pt-BR", summary=True):
             }
         }
         save_entry(data, DB_PATH)
-        history = load_history(DB_PATH)
         prompt = generate_prompt(history, data, language=language, summary=summary)
         response = get_response(prompt, language=language, summary=summary)
         st.subheader(translations["ai_suggested_recipe"])
         st.markdown(response)
-
-    # st.header(translations["actual_result_header"])
-    # actual_extraction = st.number_input(translations["actual_extraction"], step=1)
-    # actual_yield = st.number_input(translations["actual_yield"], step=0.1)
-    # actual_sensory = st.selectbox(translations["actual_sensory"], translations["actual_sensory_options"])
-
-    # if st.button(translations["send_actual_result"]):
-    #     actual_data = {
-    #         "timestamp": datetime.now().isoformat(),
-    #         "coffee": {
-    #             "process": process,
-    #             "roast": roast
-    #         },
-    #         "parameters": {
-    #             "dose": dose,
-    #             "yield": yield_,
-    #             "grind": grind,
-    #             "pre_infusion": pre_infusion
-    #         },
-    #         "desired_result": {
-    #             "sensory": desired_sensory,
-    #             "sensory_profile": {
-    #                 "acidity": None,
-    #                 "sweetness": None,
-    #                 "bitterness": None
-    #             }
-    #         },
-    #         "actual_result": {
-    #             "extraction_time": actual_extraction,
-    #             "yield": actual_yield
-    #         }
-    #     }
-    #     save_entry(actual_data, DB_PATH)
-    #     history = load_history(DB_PATH)
-    #     prompt = generate_prompt(history, actual_data, language=language, summary=summary)
-    #     response = get_response(prompt, language=language, summary=summary)
-    #     st.subheader(translations["ai_suggested_adjustments"])
-    #     st.markdown(response)
