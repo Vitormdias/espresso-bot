@@ -22,6 +22,39 @@ def web_interface(summary=True):
     brew_amount_options = ["200ml", "300ml", "500ml"]
     brew_process_options = ["Natural", "Lavado", "Honey", "Fermentado"]
 
+    # Custom CSS for styling
+    st.markdown(
+        """
+        <style>
+        body {
+            background-color: #f8f3e7;
+        }
+        .stApp {
+            background-color: #f8f3e7;
+        }
+        .block-container {
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #6b4226;
+        }
+        .stButton>button {
+            background-color: #6b4226;
+            color: white;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+        }
+        .stButton>button:hover {
+            background-color: #8c5a3c;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
     # State to toggle between espresso and coado sections
     if "show_coado" not in st.session_state:
         st.session_state.show_coado = False
@@ -29,7 +62,8 @@ def web_interface(summary=True):
     # Toggle sections based on state
     if not st.session_state.show_coado:
         # Espresso Section
-        st.title("Bora regular um espresso!")
+        st.title("☕ Bora regular um espresso!")
+        st.markdown("### Ajuste os parâmetros para criar a receita perfeita de espresso.")
         process = st.selectbox("Processo", process_options, index=1)
         roast = st.selectbox("Perfil de Torra", roast_profile_options, index=0)
         taste_notes = st.text_input("Notas sensoriais")
@@ -40,7 +74,7 @@ def web_interface(summary=True):
         pre_infusion = st.number_input("Tempo de pré-infusão (s)", step=1, value=3)
         feedback = st.text_input("Feedback")
 
-        if st.button("Criar receita"):
+        if st.button("☕ Criar receita"):
             data = {
                 "timestamp": datetime.now().isoformat(),
                 "coffee": {
@@ -61,16 +95,17 @@ def web_interface(summary=True):
             history = load_history(DB_PATH)
             prompt = generate_espresso_prompt(history, data, summary=summary)
             response = get_response(prompt, summary=summary)
-            st.subheader("Tente começar com essa receita:")
+            st.subheader("☕ Tente começar com essa receita:")
             st.markdown(response)
 
         # Button to switch to coado section
-        if st.button("Que tal regular um coado agora?"):
+        if st.button("🌱 Que tal regular um coado agora?"):
             st.session_state.show_coado = True
 
     else:
         # Coado Section
-        st.subheader("Bora fazer um café coado!")
+        st.title("🌿 Bora fazer um café coado!")
+        st.markdown("### Ajuste os parâmetros para criar a receita perfeita de café coado.")
         brew_process = st.selectbox("Processo", brew_process_options)
         brew_taste_notes = st.text_input("Notas sensoriais")
         brew_roast_profile = st.selectbox("Perfil de Torra", roast_profile_options)
@@ -78,7 +113,7 @@ def web_interface(summary=True):
         brew_amount = st.selectbox("Quanto de café quer fazer?", brew_amount_options)
         brew_feedback = st.text_area("Feedback do preparo")
 
-        if st.button("Gerar receita"):
+        if st.button("🌿 Gerar receita"):
             brew_data = {
                 "timestamp": datetime.now().isoformat(),
                 "brew": {
@@ -94,9 +129,9 @@ def web_interface(summary=True):
             history = load_history(DB_PATH)
             prompt = generate_brewers_prompt(history, brew_data, summary=summary)
             response = get_response(prompt, summary=summary)
-            st.subheader("Tente começar com essa receita:")
+            st.subheader("🌿 Tente começar com essa receita:")
             st.markdown(response)
 
         # Button to go back to espresso section
-        if st.button("Quero tomar um espresso mesmo"):
+        if st.button("☕ Quero tomar um espresso mesmo"):
             st.session_state.show_coado = False
