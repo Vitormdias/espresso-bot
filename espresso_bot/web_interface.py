@@ -19,9 +19,6 @@ def web_interface():
     grind = st.text_input("Grind (K-Max)", value="25")
     pre_infusion = st.number_input("Pre-infusion Time (s)", step=1, value=3)
     desired_sensory = st.selectbox("Desired Sensory Profile", ["Balanced Fruity Acidity & Sweetness", "Sweet and syrupy", "Strong body, balanced sweetness and no acidity", "Clear acidity and floral notes (not sour)"])
-    acidity_d = st.slider("Desired Acidity", 1, 3, 2)
-    sweetness_d = st.slider("Desired Sweetness", 1, 3, 2)
-    bitterness_d = st.slider("Desired Bitterness", 1, 3, 2)
 
     if st.button("Generate Recipe with AI"):
         data = {
@@ -39,9 +36,9 @@ def web_interface():
             "desired_result": {
                 "sensory": desired_sensory,
                 "sensory_profile": {
-                    "acidity": acidity_d,
-                    "sweetness": sweetness_d,
-                    "bitterness": bitterness_d
+                    "acidity": None,
+                    "sweetness": None,
+                    "bitterness": None
                 }
             },
             "actual_result": {
@@ -65,9 +62,6 @@ def web_interface():
     actual_extraction = st.number_input("Actual Extraction Time (s)", step=1)
     actual_yield = st.number_input("Actual Yield (g)", step=0.1)
     actual_sensory = st.selectbox("Actual Sensory Profile", ["On the spot, perfect!", "High sourness", "High bitterness", "Remove a little bit of bitterness", "Remove a little bit of sourness", "Improve sweetness", "Lacks clarity"])
-    acidity_r = st.slider("Actual Acidity", 1, 3, 2)
-    sweetness_r = st.slider("Actual Sweetness", 1, 3, 2)
-    bitterness_r = st.slider("Actual Bitterness", 1, 3, 2)
 
     if st.button("Send Actual Result to Model"):
         actual_data = {
@@ -85,18 +79,18 @@ def web_interface():
             "desired_result": {
                 "sensory": desired_sensory,
                 "sensory_profile": {
-                    "acidity": acidity_d,
-                    "sweetness": sweetness_d,
-                    "bitterness": bitterness_d
+                    "acidity": None,
+                    "sweetness": None,
+                    "bitterness": None
                 }
             },
             "actual_result": {
                 "extraction_time": actual_extraction,
                 "yield": actual_yield,
                 "actual_sensory": {
-                    "acidity": acidity_r,
-                    "sweetness": sweetness_r,
-                    "bitterness": bitterness_r
+                    "acidity": None,
+                    "sweetness": None,
+                    "bitterness": None
                 }
             }
         }
