@@ -6,7 +6,7 @@ def get_client():
         api_key=os.getenv("OPENAI_API_KEY")
     )
 
-def obter_resposta(prompt):
+def get_response(prompt):
     client = get_client()
     response = client.chat.completions.create(
         model="gpt-4o-mini",

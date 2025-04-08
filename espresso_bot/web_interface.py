@@ -6,67 +6,65 @@ from espresso_bot.prompt_generator import gerar_prompt
 import os
 
 def web_interface():
-    # Caminho do banco de dados local
+    # Local database path
     DB_PATH = "espressos.json"
 
-    # Interface Web
-    st.title("Espresso Bot com IA")
-    st.header("1. Informações do Café")
-    origem = st.text_input("Origem do café")
-    processo = st.selectbox("Processo", ["Natural", "Lavado", "Honey", "Outro"])
-    torra = st.selectbox("Perfil de torra", ["Clara", "Média Clara", "Média Escura", "Escura"])
-    st.header("2. Parâmetros iniciais")
+    # Web Interface
+    st.title("Espresso Bot with AI")
+    st.header("1. Coffee Information")
+    process = st.selectbox("Process", ["Natural", "Washed", "Honey", "Other"])
+    roast = st.selectbox("Roast Profile", ["Light Medium", "Medium", "Dark"], index=0)
+    st.header("2. Initial Parameters")
     dose = st.number_input("Dose (g)", step=0.1)
     yield_ = st.number_input("Yield (g)", step=0.1)
-    moagem = st.text_input("Moagem (K-Max)")
-    pre_infusao = st.number_input("Tempo de pré-infusão (s)", step=1)
-    st.header("3. Perfil sensorial desejado")
-    sensorial_desejado = st.text_input("Descreva o sensorial desejado")
-    acidez_d = st.slider("Acidez desejada", 1, 3, 2)
-    dulcor_d = st.slider("Dulçor desejado", 1, 3, 2)
-    amargor_d = st.slider("Amargor desejado", 1, 3, 2)
-    st.header("4. Resultado real (opcional)")
-    extracao_real = st.number_input("Tempo de extração real (s)", step=1)
-    yield_real = st.number_input("Yield real (g)", step=0.1)
-    acidez_r = st.slider("Acidez real", 1, 3, 2)
-    dulcor_r = st.slider("Dulçor real", 1, 3, 2)
-    amargor_r = st.slider("Amargor real", 1, 3, 2)
+    grind = st.text_input("Grind (K-Max)")
+    pre_infusion = st.number_input("Pre-infusion Time (s)", step=1)
+    st.header("3. Desired Sensory Profile")
+    desired_sensory = st.text_input("Describe the desired sensory profile")
+    acidity_d = st.slider("Desired Acidity", 1, 3, 2)
+    sweetness_d = st.slider("Desired Sweetness", 1, 3, 2)
+    bitterness_d = st.slider("Desired Bitterness", 1, 3, 2)
+    st.header("4. Actual Result (optional)")
+    actual_extraction = st.number_input("Actual Extraction Time (s)", step=1)
+    actual_yield = st.number_input("Actual Yield (g)", step=0.1)
+    acidity_r = st.slider("Actual Acidity", 1, 3, 2)
+    sweetness_r = st.slider("Actual Sweetness", 1, 3, 2)
+    bitterness_r = st.slider("Actual Bitterness", 1, 3, 2)
 
-    if st.button("Gerar Receita com IA"):
-        dados = {
+    if st.button("Generate Recipe with AI"):
+        data = {
             "timestamp": datetime.now().isoformat(),
-            "cafe": {
-                "origem": origem,
-                "processo": processo,
-                "torra": torra
+            "coffee": {
+                "process": process,
+                "roast": roast
             },
-            "parametros": {
+            "parameters": {
                 "dose": dose,
                 "yield": yield_,
-                "moagem": moagem,
-                "pre_infusao": pre_infusao
+                "grind": grind,
+                "pre_infusion": pre_infusion
             },
-            "resultado_desejado": {
-                "sensorial": sensorial_desejado,
-                "perfil_sensorial": {
-                    "acidez": acidez_d,
-                    "dulcor": dulcor_d,
-                    "amargor": amargor_d
+            "desired_result": {
+                "sensory": desired_sensory,
+                "sensory_profile": {
+                    "acidity": acidity_d,
+                    "sweetness": sweetness_d,
+                    "bitterness": bitterness_d
                 }
             },
-            "resultado_real": {
-                "tempo_extracao": extracao_real,
-                "yield": yield_real,
-                "sensorial_real": {
-                    "acidez": acidez_r,
-                    "dulcor": dulcor_r,
-                    "amargor": amargor_r
+            "actual_result": {
+                "extraction_time": actual_extraction,
+                "yield": actual_yield,
+                "actual_sensory": {
+                    "acidity": acidity_r,
+                    "sweetness": sweetness_r,
+                    "bitterness": bitterness_r
                 }
             }
         }
-        salvar_entrada(dados, DB_PATH)
-        historico = carregar_historico(DB_PATH)
-        prompt = gerar_prompt(historico, dados)
-        resposta = obter_resposta(prompt)
-        st.subheader("Receita sugerida pela IA:")
-        st.markdown(resposta)
+        salvar_entrada(data, DB_PATH)
+        history = carregar_historico(DB_PATH)
+        prompt = gerar_prompt(history, data)
+        response = obter_resposta(prompt)
+        st.subheader("AI Suggested Recipe:")
+        st.markdown(response)

@@ -1,15 +1,15 @@
 import json
 import os
 
-def carregar_historico(db_path):
+def load_history(db_path):
     try:
         with open(db_path, "r") as f:
             return json.load(f)
     except FileNotFoundError:
         return []
 
-def salvar_entrada(data, db_path):
-    historico = carregar_historico(db_path)
-    historico.append(data)
+def save_entry(data, db_path):
+    history = load_history(db_path)
+    history.append(data)
     with open(db_path, "w") as f:
-        json.dump(historico, f, indent=2)
+        json.dump(history, f, indent=2)
