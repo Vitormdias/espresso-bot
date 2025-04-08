@@ -46,6 +46,7 @@ def web_interface(language="pt-BR", summary=True):
             }
         }
         save_entry(data, DB_PATH)
+        history = load_history(DB_PATH)
         prompt = generate_prompt(history, data, language=language, summary=summary)
         response = get_response(prompt, language=language, summary=summary)
         st.subheader(translations["ai_suggested_recipe"])
