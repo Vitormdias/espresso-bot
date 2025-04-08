@@ -62,7 +62,7 @@ def web_interface(language="pt-BR", summary=True):
         # Button to switch to coado section
         if st.button(translations["brew_more_button"]):
             st.session_state.show_coado = True
-            st.experimental_rerun()
+            # st.experimental_rerun()
 
     else:
         # Coado Section
