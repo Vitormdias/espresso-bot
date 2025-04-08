@@ -27,28 +27,40 @@ def web_interface(summary=True):
         """
         <style>
         body {
-            background-color: #f8f3e7;
+            background-color: #4b3832; /* Dark brown background */
         }
         .stApp {
-            background-color: #f8f3e7;
+            background-color: #4b3832; /* Dark brown background */
         }
         .block-container {
             padding: 2rem;
             border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #d7ccc8; /* Light gray section */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
-        h1, h2, h3, h4, h5, h6 {
-            color: #6b4226;
+        h1, h2, h3, h4, h5, h6, p, label {
+            color: #f5f5f5; /* Off-white text */
         }
         .stButton>button {
-            background-color: #6b4226;
-            color: white;
+            background-color: #6b4226; /* Coffee brown button */
+            color: #f5f5f5; /* Off-white text */
             border-radius: 5px;
             padding: 0.5rem 1rem;
         }
         .stButton>button:hover {
-            background-color: #8c5a3c;
+            background-color: #8c5a3c; /* Lighter coffee brown on hover */
+        }
+        .stTextInput>div>div>input {
+            background-color: #f5f5f5; /* Light input background */
+            color: #4b3832; /* Dark text for inputs */
+        }
+        .stNumberInput>div>div>input {
+            background-color: #f5f5f5; /* Light input background */
+            color: #4b3832; /* Dark text for inputs */
+        }
+        .stSelectbox>div>div>div {
+            background-color: #f5f5f5; /* Light input background */
+            color: #4b3832; /* Dark text for inputs */
         }
         </style>
         """,
@@ -101,6 +113,7 @@ def web_interface(summary=True):
         # Button to switch to coado section
         if st.button("🌱 Que tal regular um coado agora?"):
             st.session_state.show_coado = True
+            st.experimental_rerun()
 
     else:
         # Coado Section
@@ -135,3 +148,4 @@ def web_interface(summary=True):
         # Button to go back to espresso section
         if st.button("☕ Quero tomar um espresso mesmo"):
             st.session_state.show_coado = False
+            st.experimental_rerun()
