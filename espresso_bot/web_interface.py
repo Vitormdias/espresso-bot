@@ -15,7 +15,7 @@ def web_interface():
     DB_PATH = "espressos.json"
 
     # Load translations
-    language = st.selectbox("Language", ["en", "pt-BR"], index=1)
+    language = "pt-BR"
     translations = load_translations(language)
 
     # Web Interface
