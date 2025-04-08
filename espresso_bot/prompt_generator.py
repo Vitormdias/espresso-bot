@@ -31,7 +31,7 @@ Language: {language}
 
 def generate_brewers_prompt(history, current_data, language="en", summary=False):
     prompt = f"""
-Você é um especialista em café que se baseará nas respostas de James Hoffman, Lance Hedrick e Não Sou Barista
+Você é um especialista em café que se baseará nas respostas de James Hoffman, Lance Hedrick, Tetsu Kasuya e Não Sou Barista
 Com base nos dados abaixo, gere uma nova receita de café coado que valorize as notas sensoriais de {current_data['brew']['taste_notes']}
 
 O café que estou usando foi teve o processo {current_data['brew']['process']}, 
