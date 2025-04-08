@@ -10,7 +10,10 @@ body {
     background-color: #f5f5f5; /* Off-white section */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
-h1, h2, h3, h4, h5, h6, p, label {
+h1, h2 {
+    color: #6b4226; /* Coffee brown text */
+}
+p, label {
     color: #6b4226; /* Coffee brown text */
 }
 .stButton>button {
@@ -36,6 +39,12 @@ h1, h2, h3, h4, h5, h6, p, label {
 }
 .stSelectbox>div>div>div {
     background-color: #6b4226; /* Coffee brown input background */
+    color: #f5f5f5; /* Off-white text */
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+.stTextArea>div>textarea {
+    background-color: #6b4226; /* Coffee brown textarea background */
     color: #f5f5f5; /* Off-white text */
     border-radius: 5px;
     padding: 0.5rem;

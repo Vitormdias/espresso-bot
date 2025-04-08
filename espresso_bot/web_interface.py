@@ -70,7 +70,6 @@ def web_interface(summary=True):
         # Button to switch to coado section
         if st.button("🌱 Que tal regular um coado agora?"):
             st.session_state.show_coado = True
-            st.experimental_rerun()
 
     else:
         # Coado Section
@@ -105,4 +104,3 @@ def web_interface(summary=True):
         # Button to go back to espresso section
         if st.button("☕ Quero tomar um espresso mesmo"):
             st.session_state.show_coado = False
-            st.experimental_rerun()
