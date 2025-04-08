@@ -1,6 +1,6 @@
 {
-  "title": "Vamos ajustar um Espresso!",
-  "input_section_header": "Conte-me sobre seu café e variáveis",
+  "title": "Bora regular um espresso!",
+  "input_section_header": "Qual café você está usando? Qual sua regulagem atual?",
   "process": "Processo",
   "process_options": ["Lavado", "Natural", "Mel", "Fermentado"],
   "roast_profile": "Perfil de Torra",
@@ -11,26 +11,25 @@
   "pre_infusion": "Tempo de pré-infusão (s)",
   "desired_sensory": "Perfil Sensorial Desejado",
   "desired_sensory_options": [
-    "Acidez e Doçura Frutada Equilibrada",
-    "Doce e xaroposo",
-    "Corpo forte, doçura equilibrada e sem acidez",
-    "Acidez clara e notas florais (não azedo)"
+    "Acidez suave e dulçor frutado",
+    "Doce e encorpado",
+    "Acidez clara e floral"
   ],
   "create_recipe": "Criar receita",
-  "ai_suggested_recipe": "Receita Sugerida pela IA",
+  "ai_suggested_recipe": "Tente começar com essa receita:",
   "actual_result_header": "Como foi?",
   "actual_extraction": "Tempo de Extração Real (s)",
   "actual_yield": "Rendimento Real (g)",
   "actual_sensory": "Perfil Sensorial Real",
   "actual_sensory_options": [
-    "No ponto, perfeito!",
-    "Alta acidez",
-    "Alta amargura",
-    "Remover um pouco de amargura",
-    "Remover um pouco de acidez",
+    "Perfeito!",
+    "Muito ácido",
+    "Muito amargo",
+    "Um pouco amaro",
+    "Um pouco ácido",
     "Melhorar doçura",
     "Falta clareza"
   ],
-  "send_actual_result": "Enviar Resultado Real",
-  "ai_suggested_adjustments": "Ajustes Sugeridos pela IA"
+  "send_actual_result": "Receita ajustada",
+  "ai_suggested_adjustments": "Vamos tentar essa receita"
 }
