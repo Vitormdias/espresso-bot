@@ -61,7 +61,7 @@ def obter_resposta(prompt):
         store=True,
         messages=[{"role": "user", "content": prompt}]
     )
-    return completion.choices[0].message.content
+    return response.choices[0].message.content
 
 # Interface Web
 st.title("Espresso Bot com IA")
